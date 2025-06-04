@@ -51,8 +51,8 @@ public class RESTRequestHandler {
     }
 
     public Response sendGetRequest(String pathURL, Map<String, ?> queryParams, Object... pathURLParams) {
+    	
         RequestSpecification requestSpecification = RestAssured.given();
-
         Response response = requestSpecification.relaxedHTTPSValidation().queryParams(queryParams).headers(headers).request().log().all()
                 .contentType(contentType).when().get(pathURL, pathURLParams).then().log().all().extract().response();
 
@@ -62,9 +62,9 @@ public class RESTRequestHandler {
         return response;
     }
 
-    public Response getRestAPIResponse(String pathURL, Map<String, ?> queryParams, Map<String, ?> pathURLParams) {
+    public Response sendGetRequest(String pathURL, Map<String, ?> queryParams, Map<String, ?> pathURLParams) {
+    	
         RequestSpecification requestSpecification = RestAssured.given();
-
         Response response = requestSpecification.relaxedHTTPSValidation().queryParams(queryParams).headers(headers).request().log().all()
                 .contentType(contentType).when().get(pathURL, pathURLParams).then().log().all().extract().response();
 
@@ -127,7 +127,60 @@ public class RESTRequestHandler {
     }
 
 
-    public Response patchRestAPIResponse(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, Map<String, ?> pathURLParams, Map<String, ?> queryParams) {
+
+    public Response sendPutRequest(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, Map<String, ?> pathURLParams, Map<String, ?> queryParams) {
+        Object body;
+
+        if(!(bodyParams instanceof Number || bodyParams instanceof String)) {
+            body = bodyParams != null ? DynamicJsonGenerator.inclusionCheck(bodyParams, inclusionValue): "";
+        } else {
+            body = bodyParams == null ? "" : bodyParams;
+        }
+
+        RequestSpecification requestSpecification = RestAssured.given();
+
+        Response response = requestSpecification.relaxedHTTPSValidation().queryParams(queryParams).headers(headers).request().log().all().contentType(contentType)
+                .when().body(body).put(pathURL, pathURLParams).then().log().all().extract().response();
+
+        if(attachLog) {
+            if(body != null) {
+                Allure.addAttachment("Request Body - ", contentType.toString(), new GsonBuilder().setPrettyPrinting().create().toJson(new JSONObject(body.toString())));
+            }
+            Allure.addAttachment("Response Body - ", contentType.toString(), response.getBody().prettyPrint());
+        }
+        return response;
+    }
+
+    public Response sendPutRequest(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, List pathURLParams, Map<String, ?> queryParams) {
+        Object body;
+
+        if(!(bodyParams instanceof Number || bodyParams instanceof String)) {
+            body = bodyParams != null ? DynamicJsonGenerator.inclusionCheck(bodyParams, inclusionValue): "";
+        } else {
+            body = bodyParams == null ? "" : bodyParams;
+        }
+
+        RequestSpecification requestSpecification = RestAssured.given();
+        Response response;
+        if(pathURLParams.size() == 0) {
+            response = requestSpecification.relaxedHTTPSValidation().queryParams(queryParams).headers(headers).request().log().all().contentType(contentType)
+                    .when().body(body).put(pathURL).then().log().all().extract().response();
+        } else {
+            response = requestSpecification.relaxedHTTPSValidation().queryParams(queryParams).headers(headers).request().log().all().contentType(contentType)
+                    .when().body(body).put(pathURL, pathURLParams.toArray()).then().log().all().extract().response();
+        }
+
+        if(attachLog) {
+            if(body != null) {
+                Allure.addAttachment("Request Body - ", contentType.toString(), new GsonBuilder().setPrettyPrinting().create().toJson(new JSONObject(body.toString())));
+            }
+            Allure.addAttachment("Response Body - ", contentType.toString(), response.getBody().prettyPrint());
+        }
+        return response;
+    }
+    
+
+    public Response sendPatchRequest(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, Map<String, ?> pathURLParams, Map<String, ?> queryParams) {
         Object body;
 
         if(!(bodyParams instanceof Number || bodyParams instanceof String)) {
@@ -150,7 +203,7 @@ public class RESTRequestHandler {
         return response;
     }
 
-    public Response patchRestAPIResponse(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, List pathURLParams, Map<String, ?> queryParams) {
+    public Response sendPatchRequest(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, List pathURLParams, Map<String, ?> queryParams) {
         Object body;
 
         if(!(bodyParams instanceof Number || bodyParams instanceof String)) {
@@ -179,7 +232,7 @@ public class RESTRequestHandler {
     }
 
 
-    public Response deleteRestAPIResponse(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, Map<String, ?> pathURLParams, Map<String, ?> queryParams) {
+    public Response sendDeleteRequest(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, Map<String, ?> pathURLParams, Map<String, ?> queryParams) {
         Object body;
 
         if(!(bodyParams instanceof Number || bodyParams instanceof String)) {
@@ -202,7 +255,7 @@ public class RESTRequestHandler {
         return response;
     }
 
-    public Response deleteRestAPIResponse(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, List pathURLParams, Map<String, ?> queryParams) {
+    public Response sendDeleteRequest(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, List pathURLParams, Map<String, ?> queryParams) {
         Object body;
 
         if(!(bodyParams instanceof Number || bodyParams instanceof String)) {
@@ -230,55 +283,4 @@ public class RESTRequestHandler {
         return response;
     }
 
-
-    public Response putRestAPIResponse(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, Map<String, ?> pathURLParams, Map<String, ?> queryParams) {
-        Object body;
-
-        if(!(bodyParams instanceof Number || bodyParams instanceof String)) {
-            body = bodyParams != null ? DynamicJsonGenerator.inclusionCheck(bodyParams, inclusionValue): "";
-        } else {
-            body = bodyParams == null ? "" : bodyParams;
-        }
-
-        RequestSpecification requestSpecification = RestAssured.given();
-
-        Response response = requestSpecification.relaxedHTTPSValidation().queryParams(queryParams).headers(headers).request().log().all().contentType(contentType)
-                .when().body(body).put(pathURL, pathURLParams).then().log().all().extract().response();
-
-        if(attachLog) {
-            if(body != null) {
-                Allure.addAttachment("Request Body - ", contentType.toString(), new GsonBuilder().setPrettyPrinting().create().toJson(new JSONObject(body.toString())));
-            }
-            Allure.addAttachment("Response Body - ", contentType.toString(), response.getBody().prettyPrint());
-        }
-        return response;
-    }
-
-    public Response putRestAPIResponse(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, List pathURLParams, Map<String, ?> queryParams) {
-        Object body;
-
-        if(!(bodyParams instanceof Number || bodyParams instanceof String)) {
-            body = bodyParams != null ? DynamicJsonGenerator.inclusionCheck(bodyParams, inclusionValue): "";
-        } else {
-            body = bodyParams == null ? "" : bodyParams;
-        }
-
-        RequestSpecification requestSpecification = RestAssured.given();
-        Response response;
-        if(pathURLParams.size() == 0) {
-            response = requestSpecification.relaxedHTTPSValidation().queryParams(queryParams).headers(headers).request().log().all().contentType(contentType)
-                    .when().body(body).put(pathURL).then().log().all().extract().response();
-        } else {
-            response = requestSpecification.relaxedHTTPSValidation().queryParams(queryParams).headers(headers).request().log().all().contentType(contentType)
-                    .when().body(body).put(pathURL, pathURLParams.toArray()).then().log().all().extract().response();
-        }
-
-        if(attachLog) {
-            if(body != null) {
-                Allure.addAttachment("Request Body - ", contentType.toString(), new GsonBuilder().setPrettyPrinting().create().toJson(new JSONObject(body.toString())));
-            }
-            Allure.addAttachment("Response Body - ", contentType.toString(), response.getBody().prettyPrint());
-        }
-        return response;
-    }
 }

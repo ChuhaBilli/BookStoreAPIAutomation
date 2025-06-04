@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import io.restassured.response.Response;
+import pojo.AddBookContract;
 
 
 
@@ -14,11 +15,13 @@ public class TestContext {
 	private String CONFIG_FILE_PATH = "src/test/resources/config.properties";
     private  Config config = null; 
     private Response response = null; 
-    private String token = ""; //TODO: To be loaded via test data csv file
-    private String tokenType = ""; //TODO: To be loaded via test data csv file
-    private String email = ""; //TODO: To be loaded via test data csv file
-    private String password = ""; //TODO: To be loaded via test data csv file
-    private int bookId = 0; //TODO: To be loaded via test data csv file
+    private String token = ""; 
+    private String tokenType = ""; 
+    private String email = ""; 
+    private String password = ""; 
+    private int bookId = 0;
+    private AddBookContract book = null;
+
 
 
 	private TestContext() {
@@ -106,6 +109,13 @@ public class TestContext {
 		this.bookId = bookId;
 	}
 
+	public AddBookContract getBook() {
+		return book;
+	}
+
+	public void setBook(AddBookContract book) {
+		this.book = book;
+	}
 
 
 
