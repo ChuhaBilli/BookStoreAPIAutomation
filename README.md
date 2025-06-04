@@ -24,11 +24,18 @@ Future scope of work planned has more feature like:
 5. Auto email support.
 6. More format of reports supported.
 
-## **Required Setup :**
+## **Required Setup:**
 
 - [Java](https://www.guru99.com/install-java.html) should be installed and configured.
 - [Maven](https://mkyong.com/maven/how-to-install-maven-in-windows/) should be installed and configured.
 - [GIT](https://phoenixnap.com/kb/how-to-install-git-windows).
 - Download the files from Git repository either as zip file OR use [Git] to clone
 
+## **Steps to execute:**
 
+1. Go to project root: <yourPath>\BookStoreAPIAutomation
+2. Run following command: mvn clean test -Dcucumber.options="src/test/resources/features/BookStore/<featureFileYouWantToRun>.feature --tags @<yourTag>"
+                 example: mvn clean test -Dcucumber.options="src/test/resources/features/BookStore/BookOperations.feature --tags @sanity"
+
+## **Report: **
+1. Cucumber Report: /target/cucumber-reports/cucumber-pretty.html

@@ -2,7 +2,7 @@ Feature: Sanity check for various book operations like add, get book by id, get 
 
 ####note: This is only sanity and there are many scenarios which can be creted with detailed test data for each endpoint.
 
-  @test
+  @sanity
   Scenario Outline: Register user, Login and save the access token
     When Send POST request to signup endpoint with values "<email>" and "<password>"
     Then Vefiry response status code is "200"
@@ -15,7 +15,7 @@ Feature: Sanity check for various book operations like add, get book by id, get 
       | email              | password |
       | test@spurqlabs.com |   123456 |
 
-  @test
+  @sanity
   Scenario Outline: Verify user is able to add book, get book details and update the book details
     ##==Given Scenario above is successful in registering and logging in the user==
     When Send POST request to add book with details <bookName>, <bookAuthor>, <publisherYear>, <bookSummary>

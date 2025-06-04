@@ -1,13 +1,11 @@
-package pojo;
+package com.pojo;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Data
 @Builder
-public class SignupContract {
+public class UserLoginContract {
 
     private String email;
     private String password;

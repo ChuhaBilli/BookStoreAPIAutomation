@@ -1,6 +1,6 @@
 Feature: Test to verify /signup endpoint for user registration.
 
-  @test
+  @sanity
   Scenario Outline: Verify User Registration
     When Send POST request to signup endpoint with values "<email>" and "<password>"
     Then Vefiry response status code is "200"

@@ -1,4 +1,4 @@
-package utils.API;
+package com.utils.API;
 
 import com.google.gson.GsonBuilder;
 import io.qameta.allure.Allure;

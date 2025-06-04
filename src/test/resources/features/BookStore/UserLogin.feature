@@ -4,7 +4,7 @@ Feature: Test to verify /login endpoint for user login.
 # To run this test for login independently we need to 1st register
 # the user and then login.
 
-  @test
+  @sanity
   Scenario Outline: Verify User Login
     When Send POST request to signup endpoint with values "<email>" and "<password>"
     Then Vefiry response status code is "200"

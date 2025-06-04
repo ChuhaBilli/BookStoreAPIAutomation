@@ -1,4 +1,4 @@
-package TestsContext;
+package com.TestsContext;
 
 import io.restassured.response.Response;
 

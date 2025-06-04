@@ -1,10 +1,10 @@
-package TestsContext;
+package com.TestsContext;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import io.restassured.response.Response;
-import pojo.AddBookContract;
+import com.pojo.AddBookContract;
 
 
 

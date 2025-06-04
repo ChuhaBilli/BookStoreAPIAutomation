@@ -1,4 +1,4 @@
-package stepsDef;
+package com.stepsDef;
 
 
 import io.cucumber.java.en.And;
@@ -7,24 +7,22 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import pojo.AddBookContract;
-import pojo.SignupContract;
-import pojo.UserLoginContract;
-
+import com.pojo.AddBookContract;
+import com.pojo.SignupContract;
+import com.pojo.UserLoginContract;
+import com.TestsContext.Config;
+import com.TestsContext.TestContext;
+import com.utils.CommonUtils;
+import com.utils.API.DynamicJsonGenerator;
+import com.utils.API.RESTRequestHandler;
 import org.junit.Assert;
-
-import TestsContext.Config;
-import TestsContext.TestContext;
-import utils.CommonUtils;
-import utils.API.DynamicJsonGenerator;
-import utils.API.RESTRequestHandler;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class StepsDef_BookStore {
 	
