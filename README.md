@@ -14,6 +14,9 @@ where user can add a book, update, fet the specific book via id or get all the b
 For using the APIs user needs to 1st register and then login, once logged in user can authenticate using the brearer token which has been emulated in the test automation project.
 
 ## **About framework:**
+Java based framework using cucumber tool to enable gherkins based test scripts with rest assured workign in background for API connectivity.
+
+## **Current Status and Furture Scope:**
 This is an initial commit with basic features sufficient to test the Sanity.
 Currently Feature file has examples of sending the dynamic request using pojos and validate response json body.
 Future scope of work planned has more feature like:
@@ -35,7 +38,7 @@ Future scope of work planned has more feature like:
 
 1. Go to project root: <yourPath>\BookStoreAPIAutomation
 2. Run following command: mvn clean test -Dcucumber.options="src/test/resources/features/BookStore/<featureFileYouWantToRun>.feature --tags @<yourTag>"
-                 example: mvn clean test -Dcucumber.options="src/test/resources/features/BookStore/BookOperations.feature --tags @sanity"
+example: mvn clean test -Dcucumber.options="src/test/resources/features/BookStore/BookOperations.feature --tags @sanity"
 
-## **Report: **
+## **Report:**
 1. Cucumber Report: /target/cucumber-reports/cucumber-pretty.html
