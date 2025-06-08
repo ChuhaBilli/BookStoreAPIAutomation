@@ -71,11 +71,12 @@ note: Command above runs a specific feature file, kindly update the feature you 
 In the tests listedin the feature file mentioned abve 1 scenario fails due to a potential bug.
 
 ## **Report:**
-Cucumber Report: report can be found at followign location:
+**Cucumber Report**: 
+1. report can be found at followign location:
 	 ```bash
 	/target/cucumber-reports/cucumber-pretty.html
 	```
- open the .html file in the preferred browser.
+2. open the .html file in the preferred browser.
 
 ## **Test Strategy:**
 1. First of all the scope of the testing was explored by doing the functional testing.
