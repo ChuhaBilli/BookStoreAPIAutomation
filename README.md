@@ -43,7 +43,7 @@ Framework is integrated with JUnit runner and designed in a scalable manner with
 
 Install the following (for installation instructions refer the hyperlinks below)
 
-- [Java](https://www.guru99.com/install-java.html): [OpenJDK 17+].
+- [Java](https://www.guru99.com/install-java.html): [OpenJDK 17+]
 - [Maven](https://mkyong.com/maven/how-to-install-maven-in-windows/): [version 3.9.9]
 - [GIT](https://phoenixnap.com/kb/how-to-install-git-windows)
 - IDE of preference (optional). This project was deloped using [eclipse](https://www.eclipse.org/downloads/packages/installer) Version: 2025-03 (4.35.0)
@@ -67,7 +67,7 @@ Install the following (for installation instructions refer the hyperlinks below)
 	```
 3. Run following command: 
 	```bash
-	mvn clean test -DtestEnv=dev -Dcucumber.features="src/test/resources/features/BookStore/HealthCheck.feature
+	mvn clean test -DtestEnv=qa -Dcucumber.features="src/test/resources/features/BookStore/HealthCheck.feature
 	```
 
 note: 
