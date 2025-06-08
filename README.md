@@ -15,8 +15,8 @@ For using the APIs user needs to 1st register and then login, once logged in use
 
 ## **About framework/Implementation:**
 Framework is developed using Java language, cucumber tool is added to enable gherkins based test scripts. For Interacting with endpoints rest assured is used. 
-Tests for all major functionalities with assertions added at various steps for verification of the book store APIs implemented. 
-Framework is integrated with JUnit runner and designed in a scalable with a re-usable REST interface layer.
+Tests for all major functionalities with assertions added at various steps for verification of the book store APIs.
+Framework is integrated with JUnit runner and designed in a scalable manner with a re-usable REST interface layer.
 
 ## **Current Status and Furture Scope:**
 1. Currently Feature file has examples of sending the dynamic request using pojos and validate response json body.
@@ -27,7 +27,7 @@ Framework is integrated with JUnit runner and designed in a scalable with a re-u
 6. CI-CD config file provisioned, which needs to be updated based on the actual environment available.
 7. Different configuration file for different environment was provided, seperate files were provided as the project develops the list of variables increases and becomes complex to be mainted in a single file.
 
-Future scope of work planned (which were not complete due to time constriant.)
+**Future scope of work planned (which were not complete due to time constriant.)**
 
 1. Auto email support with report.
 2. More format of reports supported, currently only cucumber report was provided due to time constraint.
@@ -48,14 +48,15 @@ Install the following (for installation instructions refer the hyperlinks below)
 
 ## **Steps To Execute Test:**
 
-1.a Clone the repo via git using command 
+1.
+	Clone the repo via git using command:
 	```bash
 	git clone https://github.com/ChuhaBilli/BookStoreAPIAutomation.git
 	```
 
-OR 
+	OR 
 
-1.b Download the source code as zip from [here](https://github.com/ChuhaBilli/BookStoreAPIAutomation) and then unzip to desired directory on your machine.
+	Download the source code as zip from [here](https://github.com/ChuhaBilli/BookStoreAPIAutomation) and then unzip to desired directory on your machine.
 
 2. Go to project root: 
 	```bash
