@@ -23,9 +23,11 @@ Framework is integrated with JUnit runner and designed in a scalable manner with
 2. Both +ve and -ve scenarios has been added to test the APIs.
 3. Validations are added for status codes, data in response payload, headers and errors.
 4. Chaining has been done where the response of containing the token is further used of authentication.
-5. Tags like sanity, regression, error are using in the test cases to provide for flexible execution using cucumber.
-6. CI-CD config file provisioned, which needs to be updated based on the actual environment available.
-7. Different configuration file for different environment was provided, seperate files were provided as the project develops the list of variables increases and becomes complex to be mainted in a single file.
+5. Tags like @sanity, @regression, @error are using in the test cases to provide for flexible execution using cucumber. Can be run via maven command using parameter -Dcucumber.filter.tags="@yourtag"
+6. Test execution environment(dev, qa, uat) can be passed from command line while execution, with qa being default environment. Different configuration file for different environment (dev, qa, uat) was provided, seperate files were provided as the project develops the list of variables increases and becomes complex to be mainted in a single file.
+7. Logging using slf4j.
+7. CI-CD config file provisioned, which needs to be updated based on the actual environment available.
+
 
 **Future scope of work planned (which were not complete due to time constriant.)**
 
@@ -34,6 +36,7 @@ Framework is integrated with JUnit runner and designed in a scalable manner with
 3. TestNG runner along with JUnit runner.
 4. More static test data driven scenarios for regression, which were constrianed as of now due to time availability.
 5. Json Schema validation for response.
+6. Support for parallel execution.
 
 
 ## **Prerequisites (Setup) for Test Execution:**
@@ -64,11 +67,13 @@ Install the following (for installation instructions refer the hyperlinks below)
 	```
 3. Run following command: 
 	```bash
-	mvn clean test -Dcucumber.options="src/test/resources/features/BookStore/BookOperations.feature --tags @sanity"
+	mvn clean test -DtestEnv=dev -Dcucumber.features="src/test/resources/features/BookStore/HealthCheck.feature
 	```
 
-note: Command above runs a specific feature file, kindly update the feature you want to run. 
-In the tests listedin the feature file mentioned abve 1 scenario fails due to a potential bug.
+note: 
+1. Command above runs a specific feature file, kindly update the feature you want to run. 
+2. When BookOperations.feature file is run 1 test failes due to potential bug.
+3. Before running th etest make sure the FAST API server is up ad running.
 
 ## **Report:**
 **Cucumber Report**: 

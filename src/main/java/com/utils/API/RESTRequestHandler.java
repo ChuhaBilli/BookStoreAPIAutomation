@@ -9,6 +9,8 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +24,8 @@ public class RESTRequestHandler {
     String scheme = "http";
     boolean attachLog = true;
     Map<String, String> headersKeyValue = new HashMap<>();
+    private static final Logger logger = LoggerFactory.getLogger(RESTRequestHandler.class);
+
 
     public RESTRequestHandler() {
         this.contentType = ContentType.JSON;

@@ -15,6 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<allure.version>2.24.0</allure.version>
 		<maven-cucumber-reporting.version>5.7.7</maven-cucumber-reporting.version>
+		<defaultTestEnv>qa</defaultTestEnv>
 	</properties>
 
 	<dependencyManagement>
@@ -125,8 +126,11 @@
 							<includes>
 								<include>runners.TestRunnerJUnit4.java</include>
 							</includes>
-							<skipTests>true</skipTests>
-							<testFailureIgnore>true</testFailureIgnore>
+							<skipTests>false</skipTests>
+							<testFailureIgnore>false</testFailureIgnore>
+							<systemPropertyVariables>
+								<testEnv>${defaultTestEnv}</testEnv>
+							</systemPropertyVariables>
 						</configuration>
 					</execution>
 				</executions>
