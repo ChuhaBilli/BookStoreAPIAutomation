@@ -1,7 +1,7 @@
 # SpurQ-Labs-Book Store Automation (Java-API-Cucumber-RestAssured)
 
 ## **Overview:**
-This is a test automation project for testing of following endpoints for a book store
+This is a test automation project to test the following endpoints for a book store
 
 	/health : for checking if the services is up and running.
 	/signup: for signing up a user.
@@ -19,7 +19,7 @@ Tests for all major functionalities with assertions added at various steps for v
 Framework is integrated with JUnit runner and designed in a scalable manner with a re-usable REST interface layer.
 
 ## **Current Status and Furture Scope:**
-1. Currently Feature file set of test cases which are sending dynamic request using pojos and validating response codes and json body content.
+1. Currently Feature file(s) contains set of test cases which are sending dynamic request using pojos and validating response codes and json body content.
 2. Both +ve and -ve scenarios has been added to test the APIs.
 3. Validations are added for status codes, data in response payload and errors.
 4. Chaining has been done where the response of containing the token is further used of authentication.
@@ -72,14 +72,14 @@ Install the following (for installation instructions refer the hyperlinks below)
 	mvn clean test -DtestEnv=qa -Dcucumber.features="src/test/resources/features/BookStore/HealthCheck.feature
 	```
 
-	OR
+OR
 
 	Run following command for running a particular tags from all the feature files
 	```bash
 	mvn clean test -DtestEnv=qa -Dcucumber.filter.tags="@regression"
 	```
 
-	OR
+OR
 
 	Run following command for runnign all the tests
 	```bash
@@ -124,7 +124,7 @@ for that a prefix was added to each user name and email with timestamp upto mili
 **Potential Bugs Found:**
 1. API allows to register user with null string like "".
 2. When sending numbers in register request email and passowrd field, expected is that API responds with 400 Bad request but we get 500 Server error.
-3. not a defect but concern that user can add multiple records with same details, which can cause duplicate entries.
+3. Not a defect but concern that user can add multiple records with same details, which can cause duplicate entries.
 
 
 
