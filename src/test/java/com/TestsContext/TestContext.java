@@ -10,7 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-//TODO: this class needs to be used in pico container implementation.
+
+/*
+ * Class to hold test data n execution context.
+ * This to be used with pico container for parallel execution. 
+ */
 public class TestContext {
 
     private static TestContext testContext;

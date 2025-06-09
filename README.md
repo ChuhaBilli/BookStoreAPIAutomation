@@ -9,7 +9,7 @@ This is an test automation project for testing of following endpoints for a book
 	/books: for getting the list of all the books added, adding new books.
 	/books/{id}: for updating or gettign a specific book entry.
 
-where user can add a book, update, fet the specific book via id or get all the books in db.
+where user can add a book, updated any of the stored books, fetch the specific book via id or get all the books in db and delete any of the records.
 
 For using the APIs user needs to 1st register and then login, once logged in user can authenticate using the brearer token which has been emulated in the test automation project.
 
@@ -21,10 +21,10 @@ Framework is integrated with JUnit runner and designed in a scalable manner with
 ## **Current Status and Furture Scope:**
 1. Currently Feature file has examples of sending the dynamic request using pojos and validate response json body.
 2. Both +ve and -ve scenarios has been added to test the APIs.
-3. Validations are added for status codes, data in response payload, headers and errors.
+3. Validations are added for status codes, data in response payload and errors.
 4. Chaining has been done where the response of containing the token is further used of authentication.
-5. Tags like @sanity, @regression, @error are using in the test cases to provide for flexible execution using cucumber. Can be run via maven command using parameter -Dcucumber.filter.tags="@yourtag"
-6. Test execution environment(dev, qa, uat) can be passed from command line while execution, with qa being default environment. Different configuration file for different environment (dev, qa, uat) was provided, seperate files were provided as the project develops the list of variables increases and becomes complex to be mainted in a single file.
+5. Tags like @sanity, @regression, @error added test scenarios to provide flexible and custom execution using cucumber. Can be run via maven command using parameter -Dcucumber.filter.tags="@yourtag"
+6. Test execution environment(dev, qa, uat) can be passed from command line while execution, with qa being default environment. 
 7. Logging using slf4j.
 7. CI-CD config file provisioned, which needs to be updated based on the actual environment available.
 
@@ -72,8 +72,7 @@ Install the following (for installation instructions refer the hyperlinks below)
 
 note: 
 1. Command above runs a specific feature file, kindly update the feature you want to run. 
-2. When BookOperations.feature file is run 1 test failes due to potential bug.
-3. Before running th etest make sure the FAST API server is up ad running.
+2. Before running the test make sure the FastAPI server is up and running.
 
 ## **Report:**
 **Cucumber Report**: 
@@ -97,6 +96,7 @@ note:
 have the pre loaded test data and hence new test data is created each time. which makes the test execution reliable.
 11. Provision was planned to load the pre defined test data as a mandatory 1st step and then execute some other specific set of regression, but it could not be completed due to time limitations.
 12. Also wanted to add the provision for cleaning up the data base before execution which is also not added as of now due to limited time for assignment.
+13. Testing for limit values was also not considered due to requirements not discussed or shared on this area.
 
 **Challanges Faced:**
 1. Junit runner execution was not giving any logs for failure to execute on local machine which made it hard to debug.
@@ -107,6 +107,10 @@ the test that work on predefined loaded data.
 5. For running test whithout breaking for each flow a new user has to be created everytime to avoid duplicated test data or user 
 for that a prefix was added to each user name and email with timestamp upto miliseconds. if these need to be run in parallel then thread id also needs to be appended to make the names unique in runtime.
 
+**Potential Bugs Found**
+1. API allows to register user with null string like "".
+2. When sending numbers in register request email and passowrd field, expected is that API responds with 400 Bad request but we get 500 Server error.
+3. not a defect but concern that user can add multiple records with same details, which can cause duplicate entries.
 
 
 

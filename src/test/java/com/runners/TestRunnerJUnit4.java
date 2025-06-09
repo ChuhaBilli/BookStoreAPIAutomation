@@ -18,8 +18,8 @@ import org.junit.runner.RunWith;
 	    },
 	    monochrome = true,
 	    snippets = CucumberOptions.SnippetType.CAMELCASE,
-	    dryRun = false,
-	    tags = "@sanity" // Example tag
+	    dryRun = false
+	    //tags = "@sanity" // pass the tags from maven command line
 		)
 
 public class TestRunnerJUnit4 {

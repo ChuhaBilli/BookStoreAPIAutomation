@@ -18,6 +18,10 @@ import java.util.List;
 import java.util.Map;
 
 public class RESTRequestHandler {
+	
+	/*
+	 * REST assured wrapper for CRUD operations
+	 */
 
     Headers headers;
     ContentType contentType;
@@ -79,7 +83,7 @@ public class RESTRequestHandler {
     }
 
 
-    public Response postRestAPIResponse(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, Map<String, ?> pathURLParams, Map<String, ?> queryParams) {
+    public Response sendPostRequest(Object bodyParams, DynamicJsonGenerator.inclusion inclusionValue, String pathURL, Map<String, ?> pathURLParams, Map<String, ?> queryParams) {
         Object body;
 
         if(!(bodyParams instanceof Number || bodyParams instanceof String)) {
@@ -284,6 +288,17 @@ public class RESTRequestHandler {
             }
             Allure.addAttachment("Response Body - ", contentType.toString(), response.getBody().prettyPrint());
         }
+        return response;
+    }
+    
+    public Response sendDeleteRequest(String pathURL) {
+
+
+        RequestSpecification requestSpecification = RestAssured.given();
+        Response response = requestSpecification.relaxedHTTPSValidation().headers(headers).request().log().all().contentType(contentType)
+                    .when().delete(pathURL).then().log().all().extract().response();
+        
+
         return response;
     }
 
