@@ -67,21 +67,24 @@ Install the following (for installation instructions refer the hyperlinks below)
 	```
 3. 
 
-	Run following command for running a single feature file 
+Run following command for running a single feature file:
+
 	```bash
 	mvn clean test -DtestEnv=qa -Dcucumber.features="src/test/resources/features/BookStore/HealthCheck.feature
 	```
 
 OR
 
-	Run following command for running a particular tags from all the feature files
+Run following command for running a particular tags from all the feature files:
+
 	```bash
 	mvn clean test -DtestEnv=qa -Dcucumber.filter.tags="@regression"
 	```
 
 OR
 
-	Run following command for runnign all the tests
+Run following command for runnign all the tests:
+
 	```bash
 	mvn clean test -DtestEnv=qa
 	```
