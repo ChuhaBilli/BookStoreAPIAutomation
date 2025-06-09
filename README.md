@@ -65,10 +65,26 @@ Install the following (for installation instructions refer the hyperlinks below)
 	```bash
 	yourPath/BookStoreAPIAutomation
 	```
-3. Run following command: 
-	```bash
-	mvn clean test -DtestEnv=qa -Dcucumber.features="src/test/resources/features/BookStore/HealthCheck.feature
-	```
+3. 
+
+	Run following command for running a single feature file 
+		```bash
+		mvn clean test -DtestEnv=qa -Dcucumber.features="src/test/resources/features/BookStore/HealthCheck.feature
+		```
+
+	OR
+
+	Run following command for running a particular tags from all the feature files
+		```bash
+		mvn clean test -DtestEnv=qa -Dcucumber.filter.tags="@regression"
+		```
+
+	OR
+
+	Run following command for runnign all the tests
+		```bash
+		mvn clean test -DtestEnv=qa
+		```
 
 note: 
 1. Command above runs a specific feature file, kindly update the feature you want to run. 

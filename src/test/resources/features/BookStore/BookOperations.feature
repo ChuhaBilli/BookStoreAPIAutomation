@@ -1,6 +1,6 @@
 Feature: Sanity check for various book operations like add, get book by id, get all books and update book record
 
-  @sanity  @regression
+  @sanity  @regression @error
   Scenario Outline: Register user, Login and save the access token
     When Send POST request to signup endpoint with values "<email>" and "<password>"
     Then Verify response status code is "200"
@@ -13,7 +13,7 @@ Feature: Sanity check for various book operations like add, get book by id, get 
       | email              | password |
       | test@spurqlabs.com |   123456 |
 
-  @sanity @regression
+  @sanity @regression @error
   Scenario Outline: Verify user is able to add book, get book details, update the book details and delete the record.
     When Send POST request to add book with details <bookName>, <bookAuthor>, <publisherYear>, <bookSummary>
     Then Verify response status code is "200"
@@ -64,8 +64,8 @@ Feature: Sanity check for various book operations like add, get book by id, get 
     
   @regression @error
   Scenario: Verify DELETE books API behaviour for all books.
-    When Send DELETE request to books endpoint with invalid book id
-    Then Verify response status code is "404"
-    And Verify response message for book not found
+    When Send DELETE request to books endpoint for all books
+    Then Verify response status code is "405"
+    And Verify response message for method not allowed
 
 

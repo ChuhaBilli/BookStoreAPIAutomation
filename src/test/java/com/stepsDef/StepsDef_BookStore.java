@@ -437,6 +437,30 @@ public class StepsDef_BookStore {
 		testContext.setResponse(response);
 
 	}
+	
+	@When("Send DELETE request to books endpoint for all books")
+	public void send_delete_request_to_book_endpoint_for_all_books() {
+
+		String token = testContext.getToken();
+		Map<String, String> headersKeyValue = new HashMap<>();
+		headersKeyValue.put("Authorization", "Bearer " + token);
+		headersKeyValue.put("Connection", "keep-alive");
+
+		String url = config.getUri() + config.getBookByIdEndPoint();
+
+		this.reqHandler = new RESTRequestHandler(headersKeyValue, ContentType.JSON);
+		Response response = reqHandler.sendDeleteRequest(url);
+		testContext.setResponse(response);
+
+	}
+	
+	@Then("Verify response message for method not allowed")
+	public void verify_response_message_for_method_not_allowed() {
+		
+		Assert.assertEquals("FAILED: Message mismatch", "Method Not Allowed",
+				testContext.getResponse().jsonPath().get("detail"));
+		
+	}
 
 
 }
