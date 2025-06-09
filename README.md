@@ -1,7 +1,7 @@
 # SpurQ-Labs-Book Store Automation (Java-API-Cucumber-RestAssured)
 
 ## **Overview:**
-This is an test automation project for testing of following endpoints for a book store
+This is a test automation project for testing of following endpoints for a book store
 
 	/health : for checking if the services is up and running.
 	/signup: for signing up a user.
@@ -11,7 +11,7 @@ This is an test automation project for testing of following endpoints for a book
 
 where user can add a book, updated any of the stored books, fetch the specific book via id or get all the books in db and delete any of the records.
 
-For using the APIs user needs to 1st register and then login, once logged in user can authenticate using the brearer token which has been emulated in the test automation project.
+For using the APIs, user needs to first register and then login, once logged in user can authenticate using the brearer token which has been emulated in the test automation project.
 
 ## **About framework/Implementation:**
 Framework is developed using Java language, cucumber tool is added to enable gherkins based test scripts. For Interacting with endpoints rest assured is used. 
@@ -19,7 +19,7 @@ Tests for all major functionalities with assertions added at various steps for v
 Framework is integrated with JUnit runner and designed in a scalable manner with a re-usable REST interface layer.
 
 ## **Current Status and Furture Scope:**
-1. Currently Feature file has examples of sending the dynamic request using pojos and validate response json body.
+1. Currently Feature file set of test cases which are sending dynamic request using pojos and validating response codes and json body content.
 2. Both +ve and -ve scenarios has been added to test the APIs.
 3. Validations are added for status codes, data in response payload and errors.
 4. Chaining has been done where the response of containing the token is further used of authentication.
@@ -68,27 +68,25 @@ Install the following (for installation instructions refer the hyperlinks below)
 3. 
 
 	Run following command for running a single feature file 
-		```bash
-		mvn clean test -DtestEnv=qa -Dcucumber.features="src/test/resources/features/BookStore/HealthCheck.feature
-		```
+	```bash
+	mvn clean test -DtestEnv=qa -Dcucumber.features="src/test/resources/features/BookStore/HealthCheck.feature
+	```
 
 	OR
 
 	Run following command for running a particular tags from all the feature files
-		```bash
-		mvn clean test -DtestEnv=qa -Dcucumber.filter.tags="@regression"
-		```
+	```bash
+	mvn clean test -DtestEnv=qa -Dcucumber.filter.tags="@regression"
+	```
 
 	OR
 
 	Run following command for runnign all the tests
-		```bash
-		mvn clean test -DtestEnv=qa
-		```
+	```bash
+	mvn clean test -DtestEnv=qa
+	```
 
-note: 
-1. Command above runs a specific feature file, kindly update the feature you want to run. 
-2. Before running the test make sure the FastAPI server is up and running.
+note: Before running the test make sure the FastAPI server is up and running.
 
 ## **Report:**
 **Cucumber Report**: 
@@ -123,7 +121,7 @@ the test that work on predefined loaded data.
 5. For running test whithout breaking for each flow a new user has to be created everytime to avoid duplicated test data or user 
 for that a prefix was added to each user name and email with timestamp upto miliseconds. if these need to be run in parallel then thread id also needs to be appended to make the names unique in runtime.
 
-**Potential Bugs Found**
+**Potential Bugs Found:**
 1. API allows to register user with null string like "".
 2. When sending numbers in register request email and passowrd field, expected is that API responds with 400 Bad request but we get 500 Server error.
 3. not a defect but concern that user can add multiple records with same details, which can cause duplicate entries.
