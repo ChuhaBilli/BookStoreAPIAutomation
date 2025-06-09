@@ -1,16 +1,24 @@
 package com.utils.API;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DynamicJsonGenerator {
+	
+    private static final Logger logger = LoggerFactory.getLogger(DynamicJsonGenerator.class);
+
 
     static String inclusionCheck(Object bodyParam, inclusion flag) {
 
         try {
             ObjectMapper mapper = new ObjectMapper();
+            
+            logger.info("Json generation with flag "+flag);
             switch (flag) {
                 case EXCLUDE_NULL:
                     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -31,6 +39,7 @@ public class DynamicJsonGenerator {
             }
         } catch (JsonProcessingException jpe) {
             jpe.printStackTrace();
+            logger.error(jpe.toString());
             return null;
         }
     }

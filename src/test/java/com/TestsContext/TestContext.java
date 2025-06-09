@@ -1,18 +1,25 @@
 package com.TestsContext;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 import io.restassured.response.Response;
 import com.pojo.AddBookContract;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
-//TODO: this class needs to be used in pico container implementation.
+/*
+ * Class to hold test data n execution context.
+ * This to be used with pico container for parallel execution. 
+ */
 public class TestContext {
 
     private static TestContext testContext;
-	private String CONFIG_FILE_PATH = "src/test/resources/config.properties";
+	private String CONFIG_FILE_DIR = "src/test/resources/config/";
+	private String DEFAULT_CONFIG_FILE_NAME = "qa_config.properties"; //deafult property file
     private  Config config = null; 
     private Response response = null; 
     private String token = ""; 
@@ -21,6 +28,8 @@ public class TestContext {
     private String password = ""; 
     private int bookId = 0;
     private AddBookContract book = null;
+    private static final Logger logger = LoggerFactory.getLogger(TestContext.class);
+
 
 
 
@@ -41,12 +50,33 @@ public class TestContext {
     
     private void loadConfig() {
     	
+    	String  filePath="";
+    	Properties properties = new Properties();
+    	
     	if( config == null ) {
             config = new Config();
         }
     	
-    	Properties properties = new Properties();
-        try (FileInputStream fis = new FileInputStream(CONFIG_FILE_PATH)) {
+    	/*
+    	 * Here the environment parameter from command line is checked,
+    	 * then the config file for provided environment is loaded.
+    	 * If the config file is not found then the default config file for qa environment is loaded.
+    	 */
+    	String testEnv = System.getProperty("testEnv");
+    	if(testEnv!=null) {
+    		
+    		String updatedFileName = DEFAULT_CONFIG_FILE_NAME.replace("qa_", testEnv+"_");
+    		filePath = CONFIG_FILE_DIR+updatedFileName;
+    		if(!new File(filePath).exists()) {
+    			filePath = CONFIG_FILE_DIR+DEFAULT_CONFIG_FILE_NAME;
+    		}
+    		
+    		logger.info("Loading config file: "+ filePath);
+    	}
+    	
+    	//Load config
+    	try (FileInputStream fis = new FileInputStream(filePath)) {
+    		    	
             properties.load(fis);
 			config.setUri(properties.getProperty("URI"));
 			config.setHealthCheckEndPoint(properties.getProperty("healthCheckEndPoint"));
@@ -54,8 +84,9 @@ public class TestContext {
 			config.setRegistrationEndPoint(properties.getProperty("registrationEndPoint"));
 			config.setBooksEndPoint(properties.getProperty("booksEndPoint"));
 			config.setBookByIdEndPoint(properties.getProperty("bookByIdEndPoint"));
+    		logger.info("Config loaded successfully");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.toString());
         }
     	
     }

@@ -1,7 +1,9 @@
 package com.TestsContext;
 
-import io.restassured.response.Response;
-
+/*
+ * Class to hold data from config file.
+ * to be expanded as needed.
+ */
 public class Config {
 
     private String uri = "http://127.0.0.1:8000";
