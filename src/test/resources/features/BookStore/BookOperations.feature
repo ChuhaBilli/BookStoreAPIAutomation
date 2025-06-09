@@ -27,6 +27,9 @@ Feature: Sanity check for various book operations like add, get book by id, get 
     When Send DELETE request to books endpoint with book id
     Then Verify response status code is "200"
     And Verify the deleted book message in response
+    When Send GET request to book endpoint with id parameter of book created
+    Then Verify response status code is "404"
+    And Verify response message for book not found
 
     Examples: 
       | bookName   | bookAuthor   | publisherYear | bookSummary   |
